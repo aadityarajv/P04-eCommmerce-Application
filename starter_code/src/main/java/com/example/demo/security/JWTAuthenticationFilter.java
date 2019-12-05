@@ -72,11 +72,4 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         log.info("Success, JWT creation successful.");
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
     }
-
-    @Override
-    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
-        log.error("Failed!!!, Unable to authenticate login request, reason: {}", failed.getMessage());
-
-        super.unsuccessfulAuthentication(request, response, failed);
-    }
 }
