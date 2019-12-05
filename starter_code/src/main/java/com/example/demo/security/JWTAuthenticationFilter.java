@@ -52,7 +52,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                             new ArrayList<>())
             );
         } catch (IOException e) {
-            log.error("Error :: while authentication attempt {} : {}", e.getMessage(), e.getCause());
+            log.error("Failed!!!, Error :: while authentication attempt {} : {}", e.getMessage(), e.getCause());
             throw new RuntimeException(e);
         }
     }
@@ -63,11 +63,20 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
 
-        log.info("Authentication successful, creating jwt token.");
+        log.info("Success, Authentication successful, creating jwt token.");
+
         String token = JWT.create()
                 .withSubject(((org.springframework.security.core.userdetails.User) auth.getPrincipal()).getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(HMAC512(SECRET.getBytes()));
+        log.info("Success, JWT creation successful.");
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+    }
+
+    @Override
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+        log.error("Failed!!!, Unable to authenticate login request, reason: {}", failed.getMessage());
+
+        super.unsuccessfulAuthentication(request, response, failed);
     }
 }

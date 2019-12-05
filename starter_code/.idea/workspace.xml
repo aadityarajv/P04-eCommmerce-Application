@@ -9,7 +9,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageViewManager">
-    <option name="myElementSize" value="175" />
+    <option name="myElementSize" value="172" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -38,6 +38,7 @@
     </option>
   </component>
   <component name="ProjectId" id="1SeP9zcY3HHcDg8nTPxAiHsz2UX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
@@ -136,9 +137,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.SareetaApplication" />
+        <item itemvalue="JUnit.com.example.demo.controllers in auth-course" />
         <item itemvalue="JAR Application.auth-course-0.0.1-SNAPSHOT.jar" />
         <item itemvalue="JUnit.UserControllerTest" />
-        <item itemvalue="JUnit.com.example.demo.controllers in auth-course" />
         <item itemvalue="JUnit.UserAuthenticationTest.loginTest" />
       </list>
     </recent_temporary>
@@ -156,8 +157,21 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/auth_course$com_example_demo_controllers_in_auth_course.ic" NAME="com.example.demo.controllers in auth-course Coverage Results" MODIFIED="1575229201983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/auth_course$com_example_demo_controllers_in_auth_course.ic" NAME="com.example.demo.controllers in auth-course Coverage Results" MODIFIED="1575534487665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.example.demo.controllers.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/auth_course$ItemControllerTest.ic" NAME="ItemControllerTest Coverage Results" MODIFIED="1575223619843" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

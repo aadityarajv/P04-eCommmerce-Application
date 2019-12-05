@@ -34,28 +34,28 @@ public class OrderController {
 	
 	@PostMapping("/submit/{username}")
 	public ResponseEntity<UserOrder> submit(@PathVariable String username) {
-		log.info("Order submit method invoked by username: {}", username);
+		log.info("Invoked, Order submitByUsername method: {}", username);
 		User user = userRepository.findByUsername(username);
 		if(user != null) {
 			UserOrder order = UserOrder.createFromCart(user.getCart());
 			orderRepository.save(order);
-			log.info("Order submitted successfully.");
+			log.info("Success, Order submitted successfully: {}", username);
 			return ResponseEntity.ok(order);
 		} else {
-		    log.error("Uhoh, Unable to find this username: {}", username);
+			log.error("Failed!!!, Unable to find username: {}", username);
 		    return ResponseEntity.notFound().build();
 		}
 	}
 	
 	@GetMapping("/history/{username}")
 	public ResponseEntity<List<UserOrder>> getOrdersForUser(@PathVariable String username) {
-		log.info("Get all order submitted history for this username method invoked: {}", username);
+		log.info("Invoked, Get Order historyByUsername method: {}", username);
 		User user = userRepository.findByUsername(username);
 		if(user != null) {
-			log.info("Get orders history for user method success");
+			log.info("Success, Get orders history for user method success: {}", username);
 			return ResponseEntity.ok(orderRepository.findByUser(user));
 		} else {
-		log.error("Uhoh, Unable to find this username: {}", username);
+			log.error("Failed!!!, Unable to find username: {}", username);
 		return ResponseEntity.notFound().build();
 		}
 	}

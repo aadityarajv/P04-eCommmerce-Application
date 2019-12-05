@@ -2,6 +2,8 @@ package com.example.demo.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +21,8 @@ import static com.example.demo.security.SecurityConstants.SECRET;
 import static com.example.demo.security.SecurityConstants.TOKEN_PREFIX;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+
+    private static Logger log = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
 
     public JWTAuthorizationFilter(AuthenticationManager authManager) {
         super(authManager);
@@ -51,10 +55,16 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                     .getSubject();
 
             if (user != null) {
+
+                log.info("Success, Token decoded.");
                 return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
             }
+
+            log.error("Failed!!!, Token is invalid.");
             return null;
         }
+
+        log.error("Failed!!!, Missing Token.");
         return null;
     }
 }
