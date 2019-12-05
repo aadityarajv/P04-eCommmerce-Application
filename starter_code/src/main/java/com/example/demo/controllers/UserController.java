@@ -40,19 +40,19 @@ public class UserController {
 
 	@GetMapping("/id/{id}")
 	public ResponseEntity<User> findById(@PathVariable Long id) {
-		log.info("Find userById method invoked: {}", id);
+		log.info("Invoked, Find userById method: {}", id);
 		return ResponseEntity.of(userRepository.findById(id));
 	}
 	
 	@GetMapping("/{username}")
 	public ResponseEntity<User> findByUserName(@PathVariable String username) {
-		log.info("Find userByUsername method invoked: {}", username);
+		log.info("Invoked, Find userByUsername method: {}", username);
 		User user = userRepository.findByUsername(username);
 		if(user == null) {
-			log.error("Sorry!, I am not able to find the username you asked!!!");
+			log.error("Failed!!!, Unable to find username: {}", username);
 			return ResponseEntity.notFound().build();
 		} else {
-			log.info("Gotchaa!!, This username is available: {}", username);
+			log.info("Success, Username found: {}", username);
 			return ResponseEntity.ok(user);
 		}
 //		return user == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(user);
@@ -60,21 +60,21 @@ public class UserController {
 	
 	@PostMapping("/create")
 	public ResponseEntity<User> createUser(@RequestBody CreateUserRequest createUserRequest) {
-		log.info("Create user method invoked");
+		log.info("Invoked, Create user method.");
 		User user = new User();
 
 		if(createUserRequest.getUsername() == null || createUserRequest.getPassword() == null || createUserRequest.getConfirmPassword() == null){
-			log.error("The username or password field is empty!!");
+			log.error("Failed!!!, The username or password field is empty!!");
 			return ResponseEntity.badRequest().build();
 		}
 
 		if(!createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())){
-			log.error("Error with the password, password did not match!!");
+			log.error("Failed!!!, Error with the password, password did not match!!");
 			return ResponseEntity.badRequest().build();
 		}
 
 		if(createUserRequest.getConfirmPassword().length() < 7){
-			log.error("Cannot create user, Password too short!!");
+			log.error("Failed!!!, Cannot create user, Password too short!!: {}", createUserRequest.getPassword().length());
 			return ResponseEntity.badRequest().build();
 		}
 
@@ -87,7 +87,7 @@ public class UserController {
 		user.setCart(cart);
 
 		userRepository.save(user);
-		log.info("User created successfully");
+		log.info("Success, User created successfully");
 		return ResponseEntity.ok(user);
 	}
 	

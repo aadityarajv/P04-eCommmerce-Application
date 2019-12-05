@@ -25,19 +25,19 @@ public class ItemController {
 	
 	@GetMapping
 	public ResponseEntity<List<Item>> getItems() {
-		log.info("Get Items List method invoked!!");
+		log.info("Invoked, Get itemsList method.");
 		return ResponseEntity.ok(itemRepository.findAll());
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Item> getItemById(@PathVariable Long id) {
-		log.info("Get item by method invoked: {}", id);
+		log.info("Invoked, Get itemById method: {}", id);
 		return ResponseEntity.of(itemRepository.findById(id));
 	}
 	
 	@GetMapping("/name/{name}")
 	public ResponseEntity<List<Item>> getItemsByName(@PathVariable String name) {
-		log.info("Get items by name method invoked: {}", name);
+		log.info("Invoked, Get itemsByName method: {}", name);
 		List<Item> items = itemRepository.findByName(name);
 		return items == null || items.isEmpty() ? ResponseEntity.notFound().build()
 				: ResponseEntity.ok(items);
